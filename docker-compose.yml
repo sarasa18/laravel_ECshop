@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
     laravel.test:
         build:
@@ -104,9 +104,9 @@ services:
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         links:
-            - mysql:mysql 
+            - 'mysql:mysql'
         ports:
-            - 8080:80
+            - '8080:80'
         environment:
             MYSQL_USERNAME: '${DB_USERNAME}'
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
