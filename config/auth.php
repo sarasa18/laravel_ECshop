@@ -127,14 +127,14 @@ return [
 
         'owners' => [
             'provider' => 'owners',
-            'table' => 'owner_password_reset_resets',
+            'table' => 'owner_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
 
         'admin' => [
             'provider' => 'admin',
-            'table' => 'admin_password_reset_resets',
+            'table' => 'admin_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
