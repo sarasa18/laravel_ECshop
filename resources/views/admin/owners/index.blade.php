@@ -8,9 +8,9 @@
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="p-6 text-gray-900 dark:text-gray-100">
+              <div class="md:p-6 text-gray-900 dark:text-gray-100">
                 <section class="text-gray-600 body-font">
-                  <div class="container px-5 mx-auto">
+                  <div class="container md:px-5 mx-auto">
                     <x-flash-message status="session('status')"/>
                     <div class="lg:w-2/3 w-full mx-auto overflow-auto">
                       <div class="flex justify-end mb-4">
