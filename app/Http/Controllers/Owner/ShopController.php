@@ -63,16 +63,7 @@ class ShopController extends Controller
             // サイズ変更なし
             // Storage::putFile('public/shops', $imageFile); 
 
-            $fileNameToStore = ImageService::upload($imageFile, 'shops');
-
-            // $fileName = uniqid(rand().'_');
-            // $extension = $imageFile->extension(); 
-            // $fileNameToStore = $fileName. '.' . $extension;
-            // $preimage = ImageManager::imagick()->read($imageFile);
-            // $resizedImage = $preimage->resize(1920, 1080)->encode();
-        
-            // Storage::put('public/' . $folderName . '/' . $fileNameToStore, $resizedImage );
-            
+            $fileNameToStore = ImageService::upload($imageFile, 'shops');            
         }
 
         return redirect()->route('owner.shops.index');
