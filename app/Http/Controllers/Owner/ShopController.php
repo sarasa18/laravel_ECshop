@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Shop;
 use Closure;
+use Intervention\Image\ImageManager;
+// use Intervention\Image\Drivers\Gd\Driver;
+// use Intervention\Image\Laravel\Facades\Image;
+
 
 class ShopController extends Controller
 {
@@ -36,6 +40,7 @@ class ShopController extends Controller
 
     public function index()
     {
+        // phpinfo();
         $ownerId = Auth::id();
         $shops = Shop::where('owner_id', $ownerId)->get();
 
@@ -53,7 +58,22 @@ class ShopController extends Controller
     {
         $imageFile = $request->image; //一時保存
          if(!is_null($imageFile) && $imageFile->isValid() ){
-            Storage::putFile('public/shops', $imageFile); 
+            // サイズ変更なし
+            // Storage::putFile('public/shops', $imageFile); 
+
+            // $manager = new ImageManager(new Driver());
+            $fileName = uniqid(rand().'_');
+            $extension = $imageFile->extension(); 
+            $fileNameToStore = $fileName. '.' . $extension;
+            // $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+            $preimage = ImageManager::imagick()->read($imageFile);
+            $resizedImage = $preimage->resize(1920, 1080)->encode();
+            // dd($imageFile, $resizedImage);
+
+            Storage::put('public/shops/' . $fileNameToStore, $resizedImage );
+
+
+            
         }
 
         return redirect()->route('owner.shops.index');
