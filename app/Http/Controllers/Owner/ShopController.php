@@ -69,7 +69,7 @@ class ShopController extends Controller
          if(!is_null($imageFile) && $imageFile->isValid() ){
             // サイズ変更なし
             // Storage::putFile('public/shops', $imageFile); 
-            $fileNameToStore = ImageService::upload($imageFile, 'shops');            
+            $fileNameToStore = ImageService::upload($imageFile, 'shops');
         }
 
         $shop = Shop::findOrFail($id);
