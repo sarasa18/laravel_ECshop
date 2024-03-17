@@ -49,7 +49,6 @@
                         <div class="relative flex justify-around">
                           <div class=""><input type="radio" name="is_selling" id="selling_1" class="mr-2" value="1" @if ($shop->is_selling === 1){ checked }@endif><label for="selling_1">販売中</label></div>
                           <div class=""><input type="radio" name="is_selling" id="selling_0" class="mr-2" value="0" @if ($shop->is_selling === 0){ checked }@endif><label for="selling_0">停止中</label></div>
-                          <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
                       </div>
 
