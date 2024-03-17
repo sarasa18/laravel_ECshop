@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Shop;
 use Closure;
-use Intervention\Image\ImageManager;
+// use Intervention\Image\ImageManager;
 // use Intervention\Image\Drivers\Gd\Driver;
 // use Intervention\Image\Laravel\Facades\Image;
 use App\Http\Requests\UploadImageRequest;
+use App\Services\ImageService;
 
 
 class ShopController extends Controller
@@ -62,18 +63,15 @@ class ShopController extends Controller
             // サイズ変更なし
             // Storage::putFile('public/shops', $imageFile); 
 
-            // $manager = new ImageManager(new Driver());
-            $fileName = uniqid(rand().'_');
-            $extension = $imageFile->extension(); 
-            $fileNameToStore = $fileName. '.' . $extension;
-            // $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
-            $preimage = ImageManager::imagick()->read($imageFile);
-            $resizedImage = $preimage->resize(1920, 1080)->encode();
-            // dd($imageFile, $resizedImage);
+            $fileNameToStore = ImageService::upload($imageFile, 'shops');
 
-            Storage::put('public/shops/' . $fileNameToStore, $resizedImage );
-
-
+            // $fileName = uniqid(rand().'_');
+            // $extension = $imageFile->extension(); 
+            // $fileNameToStore = $fileName. '.' . $extension;
+            // $preimage = ImageManager::imagick()->read($imageFile);
+            // $resizedImage = $preimage->resize(1920, 1080)->encode();
+        
+            // Storage::put('public/' . $folderName . '/' . $fileNameToStore, $resizedImage );
             
         }
 
