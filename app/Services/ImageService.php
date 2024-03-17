@@ -12,7 +12,7 @@ class ImageService {
     $extension = $imageFile->extension(); 
     $fileNameToStore = $fileName. '.' . $extension;
     $preimage = ImageManager::imagick()->read($imageFile);
-    $resizedImage = $preimage->resize(1920, 1080)->encode();
+    $resizedImage = $preimage->cover(1920, 1080)->encode();
 
     Storage::put('public/' . $folderName . '/' . $fileNameToStore, $resizedImage );
 
