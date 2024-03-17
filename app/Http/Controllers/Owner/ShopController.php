@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Shop;
 use Closure;
 
@@ -43,12 +44,20 @@ class ShopController extends Controller
 
     public function edit(string $id)
     {
-        dd(Shop::findOrFail($id));
+        $shop = Shop::findOrFail($id);
+        // dd(Shop::findOrFail($id));
+        return view('owner.shops.edit', compact('shop'));
     }
 
     public function update(Request $request, string $id)
     {
-        
+        $imageFile = $request->image; //一時保存
+         if(!is_null($imageFile) && $imageFile->isValid() ){
+            Storage::putFile('public/shops', $imageFile); 
+        }
+
+        return redirect()->route('owner.shops.index');
+
     }
 
 }
