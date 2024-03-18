@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Shop;
 use App\Models\SecondaryCategory;
 use App\Models\Image;
+use App\Models\Stock;
 
 class Product extends Model
 {
@@ -24,5 +26,9 @@ class Product extends Model
 
     public function imageFirst(): BelongsTo{
         return $this->belongsTo(Image::class, 'image1', 'id');
+    }
+
+    public function stock(): HasMany{
+        return $this->hasMany(Stock::class);
     }
 }
