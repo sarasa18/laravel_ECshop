@@ -44,7 +44,9 @@
 
 
 <div class="flex justify-around items-center mb-4">
-  <a href="#" data-micromodal-trigger="{{ $modal }}">ファイルを選択</a>
+  <a href="#" data-micromodal-trigger="{{ $modal }}" class="py-2 px-4 bg-gray-500">
+    ファイルを選択
+  </a>
   <div class="w-1/4">
     <img id="{{ $name }}_thumbnail" src="">
   </div>
