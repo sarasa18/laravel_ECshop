@@ -123,12 +123,20 @@
                       </div>
                     </div>
                   </form>
+                  <form method="POST" id="delete_{{$product->id}}" action="{{ route('owner.products.destroy', ['product' => $product->id]) }}">
+                    @method('delete')
+                    @csrf
+                    <div class="p-2 w-full flex justify-around mt-6">
+                      <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">削除</a>
+                    </div>
+                  </form>
               </div>
           </div>
       </div>
   </div>
   <script>
   'use strict'
+  // 画像選択
     const images = document.querySelectorAll('.image')//全てのimageタグを取得
     
     images.forEach( image =>  {
@@ -144,5 +152,12 @@
         // MicroModal.close(modal);
     }, )
     })  
-  </script>
+
+    // 削除確認
+      function deletePost(e) {
+      if (confirm('本当に削除してもいいですか?')) { 
+        document.getElementById('delete_' + e.dataset.id).submit(); 
+      }
+      } 
+    </script>
 </x-app-layout>
