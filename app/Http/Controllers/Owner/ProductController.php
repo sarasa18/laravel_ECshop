@@ -127,16 +127,6 @@ class ProductController extends Controller
         return redirect()
         ->route('owner.products.index')
         ->with(['message'=> '商品登録しました', 'status' => 'info']);//フラッシュメッセージ
-
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -144,7 +134,24 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $quantity = Stock::where('product_id', $product->id)->sum('quantity');
+
+        $shops = Shop::where('owner_id', Auth::id())
+        ->select('id', 'name')
+        ->get();
+
+        $images = Image::where('owner_id', Auth::id())
+        ->select('id', 'title', 'filename')
+        ->orderBy('updated_at', 'desc')
+        ->get();
+
+        $categories = PrimaryCategory::with('secondary')
+        ->get();
+
+        return view('owner.products.edit', compact('product','quantity','shops', 'images', 'categories'));
+
     }
 
     /**
