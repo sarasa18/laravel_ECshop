@@ -135,7 +135,7 @@ class OwnersController extends Controller
         Owner::findOrFail($id)->delete();//ソフトデリート
         return redirect()
         ->route('admin.owners.index')
-        ->with(['message' => 'オーナー情報を削除しました', 'status' => 'aleat']);//フラッシュメッセージ
+        ->with(['message' => 'オーナー情報を削除しました', 'status' => 'alert']);//フラッシュメッセージ
     }
 
     public function expiredOwnerIndex()

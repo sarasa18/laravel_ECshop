@@ -9,8 +9,10 @@
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900 dark:text-gray-100">
-                  <form method="POST" action="{{ route('owner.products.update', ['product' => $product->id]) }}">
+                <x-flash-message status="session('status')"/>
+                <form method="POST" action="{{ route('owner.products.update', ['product' => $product->id]) }}">
                     @csrf
+                    @method('put')
                     <div class="-m-2">
                       <div class="p-2 w-1/2 mx-auto">
                         <div class="relative">
@@ -49,6 +51,7 @@
                           <label for="current_quantity" class="leading-7 text-sm text-gray-600">現在の在庫数</label>
                           <input type="hidden" id="current_quantity" name="current_quantity" value="{{ $quantity }}" >
                           <div class="w-full bg-gray-100 bg-opacity-50 rounded text-base outline-none text-gray-700 py-1 px-3 leading-8 ">{{ $quantity }}</div>
+                          <x-input-error :messages="$errors->get('current_quantity')" class="mt-2" />
                         </div>
                       </div>
 
@@ -63,7 +66,7 @@
                       <div class="p-2 w-1/2 mx-auto">
                         <div class="relative">
                           <label for="quantity" class="leading-7 text-sm text-gray-600">数量 ※必須</label>
-                          <span class="text-sm">0~99の範囲で入力してください</span>
+                          <span class="text-sm block">0~99の範囲で入力してください</span>
                           <input type="number" id="quantity" name="quantity" value="0" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
                         </div>

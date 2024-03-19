@@ -2,7 +2,7 @@
 
 @php
 if(session('status') === 'info'){ $bgColor = 'bg-blue-300';} 
-if(session('status') === 'aleat'){$bgColor = 'bg-red-500';} 
+if(session('status') === 'alert'){$bgColor = 'bg-red-500';} 
 @endphp
 
 @if(session('message'))
