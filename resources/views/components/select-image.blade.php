@@ -22,7 +22,9 @@
               <div class="border rounded-md p-2 md:p-4">
                 {{-- 画像 --}}
                 <img class="image" data-id="{{ $name }}_{{ $image->id }}" data-file="{{ $image->filename }}"
-                  data-path="{{ asset('storage/products/') }}" data-modal="{{ $modal }}"
+                  data-path="{{ asset('storage/products/') }}" 
+                  {{-- data-modal="{{ $modal }}" --}}
+                  data-micromodal-close
                   src="{{ asset('storage/products/' . $image->filename)}}" >
                   <div class="text-gray-700">
                     {{ $image->title }}
