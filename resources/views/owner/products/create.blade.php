@@ -62,6 +62,7 @@
                               </option> 
                             @endforeach 
                           </select>
+                          <x-input-error :messages="$errors->get('shop_id')" class="mt-2" />
                         </div>
                       </div>
                       
@@ -79,6 +80,7 @@
                                 @endforeach
                             @endforeach 
                           </select>
+                          <x-input-error :messages="$errors->get('category')" class="mt-2" />
                         </div>
                       </div>
                       {{-- 画像選択 --}}
@@ -91,6 +93,7 @@
                         <div class="relative flex justify-around">
                           <div class=""><input type="radio" name="is_selling" id="selling_1" class="mr-2" value="1" checked><label for="selling_1">販売中</label></div>
                           <div class=""><input type="radio" name="is_selling" id="selling_0" class="mr-2" value="0" ><label for="selling_0">停止中</label></div>
+                          <x-input-error :messages="$errors->get('is_selling')" class="mt-2" />
                         </div>
                       </div>
 

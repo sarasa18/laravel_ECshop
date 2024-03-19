@@ -13,11 +13,9 @@ class Stock extends Model
 
     protected $table = 't_stocks';
 
-    // protected $fillable = [
-    //     'owner_id',
-    //     'name',
-    //     'information',
-    //     'filename',
-    //     'is_selling',
-    // ];
+    protected $fillable = [
+        'product_id',
+        'type',
+        'quantity',
+    ];
 }
