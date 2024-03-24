@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\Shop;
 use App\Models\SecondaryCategory;
 use App\Models\Image;
 use App\Models\Stock;
+use App\Models\User;
 
 class Product extends Model
 {
@@ -55,5 +57,11 @@ class Product extends Model
 
     public function stock(): HasMany{
         return $this->hasMany(Stock::class);
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'carts')
+        ->withPivot(['id', 'quantity']);
     }
 }
