@@ -8,9 +8,30 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cart;
+use App\Models\User;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:users');
+    }
+
+
+    public function index(){
+        $user = User::findOrFail(Auth::id());
+        $products = $user->products;
+        $totalPrice = 0;
+
+        foreach ($products as $product) {
+            $totalPrice += $product->price * $product->pivot->quantity;
+        }
+
+        // dd($products, $totalPrice);
+
+        return view('user.cart', compact('products', 'totalPrice'));
+    }
+
     public function add(Request $request){
         $itemInCart = Cart::where('product_id', $request->product_id)
         ->where('user_id', Auth::id())->first();
@@ -26,6 +47,7 @@ class CartController extends Controller
                 'quantity' => $request->quantity,
             ]);
         }
-        dd('tesut');
+
+        return redirect()->route('user.cart');
     }
 }
