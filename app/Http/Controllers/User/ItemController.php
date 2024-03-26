@@ -42,7 +42,7 @@ class ItemController extends Controller
         // Mail::to('test@example')->send(new TestMail());
 
         // 非同期送信
-        SendThanksMail::dispatch();
+        // SendThanksMail::dispatch();
 
         $categories = PrimaryCategory::with('secondary')
         ->get();
